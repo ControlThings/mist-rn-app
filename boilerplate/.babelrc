@@ -1,0 +1,24 @@
+{
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "env": {
+        "development": {
+          "plugins": [
+            "@babel/plugin-proposal-class-properties",
+            "@babel/transform-flow-strip-types",
+            [
+              "react-intl",
+              { "messagesDir": "./", "enforceDescriptions": "true" }
+            ]
+          ]
+        },
+        "production": {
+          "plugins": [
+            "@babel/transform-flow-strip-types",
+            [
+              "react-intl",
+              { "messagesDir": "./", "enforceDescriptions": "true" }
+            ]
+          ]
+        }
+      }
+  }

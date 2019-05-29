@@ -2,10 +2,24 @@
  *@flow
  */
  import React, {Component} from 'react';
+ import { Text } from 'react-native';
 
  //Import redux package and store connected to redux
 import { Provider, connect } from "react-redux";
 import store from "./redux/store";
+
+//Import translations package 
+import { IntlProvider, addLocaleData } from "react-intl";
+
+//Add internationalization data, specifies date, time, number, formats for each language
+import english from "react-intl/locale-data/en.js";
+import swedish from "react-intl/locale-data/sv.js";
+import finnish from "react-intl/locale-data/fi.js";
+addLocaleData([...english, ...swedish, ...finnish]);
+
+//Import generated translations file more information how to generate in doc/generate-translations.txt
+import translations from "./translations/all.json";
+require("intl");
 
 //load's mist values to redux
 import MistWrapper from "./mistWrapper/wrapper";
@@ -29,7 +43,14 @@ class Content extends Component<Props, State> {
 
   render() {
     return (
+    <IntlProvider
+        messages={translations["en"]}
+        locale="en"
+        defaultLocale="en"
+        textComponent={Text}
+    > 
         <Root/>
+    </IntlProvider>
     );
   }
 }
